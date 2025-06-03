@@ -1,6 +1,7 @@
 import math 
 import pygame, sys, random
 from pygame.locals import QUIT
+from fractions import Fraction 
 
 # OPEN TERMINAL TO TYPE STUFF IT IS NOT DISPLAYED IN THE PYTHON WINDOW
 
@@ -8,41 +9,97 @@ while True:
     try:
         num_input = input("Type first number (type exponent for exponents, ! for factorial, or quit to exit): ")
         if num_input.lower() == "quit":
-            print("\nCALCULATOR PROGRAM: Initialize quit...\nProgram exited.")
+            print("\nInitialize quit...\nProgram exited.")
             break
         if num_input.lower() == "exponent":
             try:
                 number = float(input("Type number: "))
                 power = float(input("Type power (ex. 2, 3): "))
-                print(number ** power)
+                print(f"{number ** power}\n")
+
             except OverflowError:
-                print("MATH ERROR: Number too large. Try again.", "\n")
+                print("MATH ERROR: Number too large. Try again.\n")
+
             except ValueError:
-                print("\nSYNTAX ERROR: Number or exponent may be wrong. Try again", "\n")
+                print("\nSYNTAX ERROR: Number or exponent may be wrong. Try again\n")
             continue
         
         if num_input.lower() == "!":
             try:
                 factorial = int(input("Type number: "))
                 print(math.factorial(factorial))
-                continue
+                print()
+
             except OverflowError:
-                print("\nMATH ERROR: Number too large. Try again.", "\n")
-                continue
+                print("\nMATH ERROR: Number too large. Try again.\n")
+            
             except ValueError:
                 print("\nSYNTAX ERROR: Type in an non-negative whole number. Try again.", "\n")
+            continue
+
+        if num_input.lower() == "fraction":
+            try:
+                fraction_input = input("Type fraction (i.e. 3/4): ")
+                decimal = float(Fraction(fraction_input))
+                print(decimal)
+                print()
+            
+            except ValueError:
+                print("\nSYNTAX ERROR: Not a valid number. Try again.\n")
+            continue
+        
+        if num_input.lower() == "decimal":
+            print("skibidi")
+            try:
+                decimal_input = input("Type decimal (i.e. 0.75): ")
+                fraction = Fraction(float(decimal_input)).limit_denominator()
+                print(fraction)
+                print()
                 continue
+            
+            except ValueError:
+                print("\nSYNTAX ERROR: Not a valid number. Try again.\n")
+                continue
+
+        
+        if num_input.lower() == "random":
+            try:
+                max_input = input("Type max number: ")
+                max = int(max_input)
+                print(f"{random.randint(0, max)}\n")
+
+            except OverflowError:
+                print("\nMATH ERROR: Number too large. Try again.\n")
+            
+            except ValueError:
+                print("\nSYNTAX ERROR: Not real numbers. Try again.\n")
+            continue    
+
+        if num_input == "square root":
+            try:
+                x_input = input("Type number: ")
+                x = float(x_input)
+                sol = math.sqrt(x)
+                print(f"{sol}\n")
+            
+            except OverflowError:
+                print("\nMATH ERROR: Number too large. Try again.\n")
+                
+            except ValueError:
+                print("\nSYNTAX ERROR: Not real numbers or negative numbers. Try again.\n")
+            continue
+
         
         nums_input = input("Type second number or type quit to exit: ")
         if nums_input.lower() == "quit":
-            print("CALCULATOR PROGRAM: Initialize quit...\nProgram exited.", "\n")
+            print("Initialize quit...\nProgram exited.\n")
             break
         
         num = float(num_input)
         nums = float(nums_input)
         
     except ValueError: 
-        print("\nSYNTAX ERROR: Numbers may be wrong. Try again.", "\n")
+        print("\nSYNTAX ERROR: Numbers may be wrong. Try again.\n")
         continue
         
     operation = input("Type operation: ")
@@ -56,9 +113,45 @@ while True:
             print(f"{num} x {nums} = {num * nums}\n")
         elif operation == "/":
             if nums == 0:
-                print("\nMATH ERROR: No dividing by zero. Try again.")
+                print("MATH ERROR: No dividing by zero. Try again.\n")
             else:
                 print(f"{num} / {nums} = {num / nums}\n")
+
+        def capitals():
+            print("I see, you have found the portal. Now that you are here, you will play a game with me. You must say the same thing as me, or you lose. If you win and say the same thing as me for all the questions, you get $5.6 trillion in strontium-90.\n")
+            
+            while True:
+                question1 = input("Type a massively life-changing human invention: ")
+                if question1.lower() in ["wheel", "the wheel"]:
+                    print("\nGood job! We shall now move on to the next one.\n")
+                else:
+                    print("\nHow dare you not say the same thing as me?? YOU SHALL REGRET TODAY'S ACTIONS!!\n")
+                    return
+                
+                question2 = input("Type a random existent object in the universe: ")
+                if question2.lower() in ["ton-618", "ton 618"]:
+                    print("\nGood job! Now, on to the next question.\n")
+                else:
+                    print("\nHow dare you not say the same thing as me?? YOU SHALL REGRET TODAY'S ACTIONS!!\n")
+                    return
+                
+                question3 = input("Type a random country capital: ")
+                if question3.lower() in ["skopje", "n'djamena"]:
+                    print("\nGood job! Now, on to the last question.\n")
+                else:
+                    print("\nHow dare you not say the same thing as me?? YOU SHALL REGRET TODAY'S ACTIONS!!\n")
+
+                question4 = input("Type something: ")
+                if question4.lower() == "pingviinien aerokomskaya enscherweniya ein technoulauwgikal anadministratsiya":
+                    print("\nGood job! Congratulations for saying the same thing as me! You have now won $5.6 trillion in strontium-90. A messenger shall arrive at your location shortly to give you your reward.\n")
+                    break
+                else:
+                    print("\nYou have made a massive mistake. In 10 seconds, I shall close these doors and heat it up until 500 duodecillion degrees celcius, burning everything inside. MWAHAHAHAHAHA!!!! MWAHAHAHAHAHAHH!!!!!!\n")
+                    return
+                
+                
+            
+
 
         def game():
             pygame.init()
@@ -254,11 +347,14 @@ while True:
             challenge()
             break
         if operation.lower() == "pong":
-            print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. Have fun!")
+            print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. Have fun!\n")
             game()
             break
+        if operation.lower() == "challenge":
+            capitals()
+            break
             
-        if operation.lower() not in ["+", "-", "*", "/", "magic"]:
+        if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
             print("SYNTAX ERROR: Operations may be wrong. Try again.")
             
     except OverflowError:
