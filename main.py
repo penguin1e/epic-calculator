@@ -1,7 +1,10 @@
 import math 
+<<<<<<< HEAD
 import pygame, sys, random
 from pygame.locals import QUIT
 from fractions import Fraction 
+=======
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
 
 # OPEN TERMINAL TO TYPE STUFF IT IS NOT DISPLAYED IN THE PYTHON WINDOW
 
@@ -9,12 +12,17 @@ while True:
     try:
         num_input = input("Type first number (type exponent for exponents, ! for factorial, or quit to exit): ")
         if num_input.lower() == "quit":
+<<<<<<< HEAD
             print("\nInitialize quit...\nProgram exited.")
+=======
+            print("\nCALCULATOR PROGRAM: Initialize quit...\nProgram exited.")
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
             break
         if num_input.lower() == "exponent":
             try:
                 number = float(input("Type number: "))
                 power = float(input("Type power (ex. 2, 3): "))
+<<<<<<< HEAD
                 print(f"{number ** power}\n")
 
             except OverflowError:
@@ -22,12 +30,20 @@ while True:
 
             except ValueError:
                 print("\nSYNTAX ERROR: Number or exponent may be wrong. Try again\n")
+=======
+                print(number ** power)
+            except OverflowError:
+                print("MATH ERROR: Number too large. Try again.", "\n")
+            except ValueError:
+                print("\nSYNTAX ERROR: Number or exponent may be wrong. Try again", "\n")
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
             continue
         
         if num_input.lower() == "!":
             try:
                 factorial = int(input("Type number: "))
                 print(math.factorial(factorial))
+<<<<<<< HEAD
                 print()
 
             except OverflowError:
@@ -93,13 +109,30 @@ while True:
         nums_input = input("Type second number or type quit to exit: ")
         if nums_input.lower() == "quit":
             print("Initialize quit...\nProgram exited.\n")
+=======
+                continue
+            except OverflowError:
+                print("\nMATH ERROR: Number too large. Try again.", "\n")
+                continue
+            except ValueError:
+                print("\nSYNTAX ERROR: Type in an non-negative whole number. Try again.", "\n")
+                continue
+        
+        nums_input = input("Type second number or type quit to exit: ")
+        if nums_input.lower() == "quit":
+            print("CALCULATOR PROGRAM: Initialize quit...\nProgram exited.", "\n")
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
             break
         
         num = float(num_input)
         nums = float(nums_input)
         
     except ValueError: 
+<<<<<<< HEAD
         print("\nSYNTAX ERROR: Numbers may be wrong. Try again.\n")
+=======
+        print("\nSYNTAX ERROR: Numbers may be wrong. Try again.", "\n")
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
         continue
         
     operation = input("Type operation: ")
@@ -113,6 +146,7 @@ while True:
             print(f"{num} x {nums} = {num * nums}\n")
         elif operation == "/":
             if nums == 0:
+<<<<<<< HEAD
                 print("MATH ERROR: No dividing by zero. Try again.\n")
             else:
                 print(f"{num} / {nums} = {num / nums}\n")
@@ -277,6 +311,11 @@ while True:
                 pygame.display.update()
                 clock.tick(60) 
 
+=======
+                print("\nMATH ERROR: No dividing by zero. Try again.")
+            else:
+                print(f"{num} / {nums} = {num / nums}\n")
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
                 
         def challenge():
             print("Hello, there. Welcome to the Land of Maybe. If you stumbled across here by accident, do not worry! Simply type 'no' into the next box. \n")
@@ -346,6 +385,7 @@ while True:
         if operation.lower() == "magic":
             challenge()
             break
+<<<<<<< HEAD
         if operation.lower() == "pong":
             print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. Have fun!\n")
             game()
@@ -355,6 +395,10 @@ while True:
             break
             
         if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
+=======
+            
+        if operation.lower() not in ["+", "-", "*", "/", "magic"]:
+>>>>>>> 470dca86d39c34b4c510806cfa158fc8a5be2979
             print("SYNTAX ERROR: Operations may be wrong. Try again.")
             
     except OverflowError:
