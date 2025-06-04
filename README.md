@@ -1,8 +1,10 @@
 # epic-calculator
 
-* Fully functioning calculator
+* Fully functioning Python calculator.
 
-* Has factorial, exponents, and regular calculator functions.
+* Uses the input() function, try and except blocks, if-statements, functions, lists, strings, floats, and integers.
 
-* Secret minigame hidden within
+* Has factorial, exponents, random number generator, decimal to fraction, fraction to decimal, square roots, and regular calculator functions.
+
+* Secret minigame(s) hidden within.
 
