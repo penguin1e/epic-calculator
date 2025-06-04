@@ -5,11 +5,13 @@ from fractions import Fraction
 
 # OPEN TERMINAL TO TYPE STUFF IT IS NOT DISPLAYED IN THE PYTHON WINDOW
 
+# Feel free to add anything (minigames, more functions) as long as it is calculator related and in Python.
+
 while True:
     try:
-        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, fraction for fraction to decimal converter, decimal for decimal to fraction converter, or quit to exit): ")
+        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, or quit to exit): ")
         if num_input.lower() == "quit":
-            print("\nInitialize quit...\nProgram exited.")
+            print("\nInitialize quit...\nProgram exited.\n")
             break
         if num_input.lower() == "exponent":
             try:
@@ -41,6 +43,7 @@ while True:
             try:
                 fraction_input = input("Type fraction (i.e. 3/4): ")
                 decimal = float(Fraction(fraction_input))
+                print()
                 print(decimal)
                 print()
             
@@ -52,6 +55,7 @@ while True:
             try:
                 decimal_input = input("Type decimal (i.e. 0.75): ")
                 fraction = Fraction(float(decimal_input)).limit_denominator()
+                print()
                 print(fraction)
                 print()
                 continue
@@ -79,7 +83,8 @@ while True:
                 x_input = input("Type number: ")
                 x = float(x_input)
                 sol = math.sqrt(x)
-                print(f"{sol}\n")
+                print(sol)
+                print()
             
             except OverflowError:
                 print("\nMATH ERROR: Number too large. Try again.\n")
@@ -91,7 +96,7 @@ while True:
         
         nums_input = input("Type second number or type quit to exit: ")
         if nums_input.lower() == "quit":
-            print("Initialize quit...\nProgram exited.\n")
+            print("\nInitialize quit...\nProgram exited.\n")
             break
         
         num = float(num_input)
