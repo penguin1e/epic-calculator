@@ -7,7 +7,7 @@ from fractions import Fraction
 
 while True:
     try:
-        num_input = input("Type first number (type exponent for exponents, ! for factorial, or quit to exit): ")
+        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, fraction for fraction to decimal converter, decimal for decimal to fraction converter, or quit to exit): ")
         if num_input.lower() == "quit":
             print("\nInitialize quit...\nProgram exited.")
             break
@@ -49,7 +49,6 @@ while True:
             continue
         
         if num_input.lower() == "decimal":
-            print("skibidi")
             try:
                 decimal_input = input("Type decimal (i.e. 0.75): ")
                 fraction = Fraction(float(decimal_input)).limit_denominator()
@@ -283,7 +282,7 @@ while True:
             cool = input("Would you like to continue?: ")
             
             if cool.lower() == "no":
-                    print("Ha! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n SEE YOU IN HECK YOU LITTLE FOOL!, \n")
+                    print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n")
                     return
             
             elif cool.lower() == "yes":
@@ -337,10 +336,10 @@ while True:
                             questionss = input("\nWhat was the last state to break away from the Soviet Union, and when did it officially collapse? (format: [country, MM, DD, YY]): \n")
                             
                             if questionss.lower() in ["kazakhstan, december 26, 1991", "kazakhstan, december 26th, 1991"]:
-                                print("Ha! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n SEE YOU IN HECK YOU LITTLE FOOL!, \n")
+                                print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n")
                                 return
                             else:
-                                print("So you have chosen...death.\n")
+                                print("\nSo you have chosen...death.\n")
                                 return
                 
         if operation.lower() == "magic":
