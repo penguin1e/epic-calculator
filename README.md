@@ -1,4 +1,4 @@
-# epic-calculator
+# Epic Calculator
 
 * Fully functioning Python calculator.
 
