@@ -2,9 +2,25 @@
 
 * Fully functioning Python calculator.
 
-* Uses the input() function, try and except blocks, if-statements, functions, lists, strings, floats, and integers.
+* Has many helpful functions that can be used if typed correctly
 
-* Has factorial, exponents, random number generator, decimal to fraction, fraction to decimal, square roots, and regular calculator functions.
+* Secret minigame(s) hidden within that can be revealed if typed correctly
 
-* Secret minigame(s) hidden within.
+## Functions
+
+### Miscellaneous
+
+* Random number generatior
+
+### Helpful
+
+* Fraction to decimal and decimal to fraction
+
+* Exponents
+
+* Factorial
+
+* Square root
+
+* Scientific (base 10)
 

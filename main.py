@@ -1,4 +1,5 @@
 import math 
+import operator
 import pygame, sys, random
 from pygame.locals import QUIT
 from fractions import Fraction 
@@ -9,7 +10,7 @@ from fractions import Fraction
 
 while True:
     try:
-        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, or quit to exit): ")
+        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, or quit to exit): ")
         if num_input.lower() == "quit":
             print("\nInitialize quit...\nProgram exited.\n")
             break
@@ -93,6 +94,24 @@ while True:
                 print("\nSYNTAX ERROR: Not real numbers or negative numbers. Try again.\n")
             continue
 
+        if num_input.lower() == "scientific":
+            operations = {"+": operator.add, 
+                          "-": operator.sub,
+                          "*": operator.mul,
+                          "/": operator.truediv}
+            try:
+                sci = float(input("Type number in scientific form (i.e. 3.5e+06): "))
+                sci2 = float(input("Type second number here: "))
+                operation = input("Type operation: ")
+                result = operations[operation](sci, sci2)
+                print(f"\n{result:.2e}\n")
+                continue
+            
+            except ValueError:
+                print("\nSYNTAX ERROR: Numbers may be wrong. Try again.\n")
+            continue
+
+
         
         nums_input = input("Type second number or type quit to exit: ")
         if nums_input.lower() == "quit":
@@ -116,10 +135,9 @@ while True:
         elif operation == "*":
             print(f"{num} x {nums} = {num * nums}\n")
         elif operation == "/":
-            if nums == 0:
-                print("MATH ERROR: No dividing by zero. Try again.\n")
-            else:
-                print(f"{num} / {nums} = {num / nums}\n")
+            print(f"{num} / {nums} = {num / nums}\n")
+        
+    
 
         def capitals():
             print("I see, you have found the portal. Now that you are here, you will play a game with me. You must say the same thing as me, or you lose. If you win and say the same thing as me for all the questions, you get $5.6 trillion in strontium-90.\n")
@@ -360,6 +378,10 @@ while True:
             
         if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
             print("SYNTAX ERROR: Operations may be wrong. Try again.")
+
+    except ZeroDivisionError:
+        print("MATH ERROR: No dividing by zero. Try again")
+        continue
             
     except OverflowError:
         print("\nMATH ERROR: Number too large. Try again. \n")
