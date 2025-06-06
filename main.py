@@ -9,10 +9,17 @@ from fractions import Fraction
 # Feel free to add anything (minigames, more functions) as long as it is calculator related and in Python.
 
 while True:
+
+    syntaxerror = "\nSYNTAX ERROR: Numbers may be wrong. Try again.\n"
+    opserror = "\nSYNTAX ERROR: Operations may be wrong. Try again.\n"
+    matherror = "\nMATH ERROR: Number too large. Try again.\n"
+    zerodiv = "\nMATH ERROR: No dividing by zero. Try again.\n"
+    quitmessage = "\nInitialize quit...\nProgram exited.\n"
+
     try:
         num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, or quit to exit): ")
         if num_input.lower() == "quit":
-            print("\nInitialize quit...\nProgram exited.\n")
+            print(quitmessage)
             break
         if num_input.lower() == "exponent":
             try:
@@ -21,10 +28,10 @@ while True:
                 print(f"{number ** power}\n")
 
             except OverflowError:
-                print("MATH ERROR: Number too large. Try again.\n")
+                print(matherror)
 
             except ValueError:
-                print("\nSYNTAX ERROR: Number or exponent may be wrong. Try again\n")
+                print(syntaxerror)
             continue
         
         if num_input.lower() == "!":
@@ -34,10 +41,10 @@ while True:
                 print()
 
             except OverflowError:
-                print("\nMATH ERROR: Number too large. Try again.\n")
+                print(matherror)
             
             except ValueError:
-                print("\nSYNTAX ERROR: Type in an non-negative whole number. Try again.", "\n")
+                print("\nSYNTAX ERROR: Use non-negative whole numbers. Try again.\n")
             continue
 
         if num_input.lower() == "fraction":
@@ -49,7 +56,7 @@ while True:
                 print()
             
             except ValueError:
-                print("\nSYNTAX ERROR: Not a valid number. Try again.\n")
+                print(syntaxerror)
             continue
         
         if num_input.lower() == "decimal":
@@ -62,7 +69,7 @@ while True:
                 continue
             
             except ValueError:
-                print("\nSYNTAX ERROR: Not a valid number. Try again.\n")
+                print(syntaxerror)
                 continue
 
         
@@ -73,10 +80,10 @@ while True:
                 print(f"{random.randint(0, max)}\n")
 
             except OverflowError:
-                print("\nMATH ERROR: Number too large. Try again.\n")
+                print(matherror)
             
             except ValueError:
-                print("\nSYNTAX ERROR: Not real numbers. Try again.\n")
+                print(syntaxerror)
             continue    
 
         if num_input == "square root":
@@ -88,10 +95,10 @@ while True:
                 print()
             
             except OverflowError:
-                print("\nMATH ERROR: Number too large. Try again.\n")
+                print(matherror)
                 
             except ValueError:
-                print("\nSYNTAX ERROR: Not real numbers or negative numbers. Try again.\n")
+                print(syntaxerror)
             continue
 
         if num_input.lower() == "scientific":
@@ -108,21 +115,24 @@ while True:
                 continue
             
             except ValueError:
-                print("\nSYNTAX ERROR: Numbers may be wrong. Try again.\n")
+                print(syntaxerror)
+
+            except OverflowError:
+                print(matherror)
             continue
 
 
         
         nums_input = input("Type second number or type quit to exit: ")
         if nums_input.lower() == "quit":
-            print("\nInitialize quit...\nProgram exited.\n")
+            print(quitmessage)
             break
         
         num = float(num_input)
         nums = float(nums_input)
         
     except ValueError: 
-        print("\nSYNTAX ERROR: Numbers may be wrong. Try again.\n")
+        print(syntaxerror)
         continue
         
     operation = input("Type operation: ")
@@ -189,22 +199,29 @@ while True:
             ballbottomboundary=(290)
             balleftboundary=(0)
             ballrightboundary=(390)
+
             ballup=True
             balleft=True
-            run=True
+
+            run = False
+            game_over = False
+
             paddlespeed=2
-            s1=0
-            s2=0
-            winner=""
+            s1 = 0
+            s2 = 0
+            winner = ""
+
             font=pygame.font.SysFont("arial",30)
             scoretext=font.render("0 | 0",False,(0,0,0))
             winnertext=font.render(winner+" wins",False,(0,0,0))
+
             while True:
                 for event in pygame.event.get():
                     if event.type == QUIT:
                         pygame.quit()
                         sys.exit()
                 keys=pygame.key.get_pressed()
+
                 if run:
                     if keys[pygame.K_UP]:
                         paddle2.y-=paddlespeed
@@ -222,7 +239,8 @@ while True:
                         paddle.y+=paddlespeed
                         if paddle.y>=paddlebottomboundary:
                             paddle.y=paddlebottomboundary
-                else:
+
+                if not run and not game_over:
                     if keys[pygame.K_SPACE]:
                         paddle.y=(115)
                         paddle2.y=(115)
@@ -235,6 +253,7 @@ while True:
                 pygame.draw.rect(screens,"black",paddle)
                 pygame.draw.rect(screens,"black",paddle2)
                 pygame.draw.rect(screens,"black",ball)
+
                 if run:
                     scoretext=font.render(f"{s1} | {s2}",False,(0,0,0))
                     screens.blit(scoretext,(150,0))
@@ -243,25 +262,32 @@ while True:
                         ball.y-=2
                     if ballup==False:
                         ball.y+=2
+
                     # move down
                     if ball.y<=balltopboundary:
                         ballup=False
                         ball.y=balltopboundary
+
                     # move up
                     if ball.y>=ballbottomboundary:
                         ballup=True
                         ball.y=ballbottomboundary
+
                     # move x
                     if balleft==True:
                         ball.x-=2
                     if balleft==False:
                         ball.x+=2
+
                     # move left wall
                     if ball.x<=balleftboundary:
+                        s2 += 1
                         balleft=False
                         ball.x=balleftboundary
                         run=False
+
                     if ball.x>=ballrightboundary:
+                        s1 += 1
                         ball.x=ballrightboundary
                         run=False
                     
@@ -270,28 +296,23 @@ while True:
                         balleft=False
                     if ball.colliderect(paddle2):
                         balleft=True
-                    # score
-                    if ball.x<=balleftboundary:
-                        s2+=1
-                    if ball.x>=ballrightboundary:
-                        s1+=1       
-                    if s1==10 or s2==10:
-                        run=False
-                    # winner
-                else:
-                    if s1>=10 and s1>s2:
-                        winner="Player 1"
-                        print(winner+" wins.")
-                        winnertext=font.render(winner+" wins",False,(0,0,0))
-                        screens.blit(winnertext,(100,40))
+                    
+                    if s1 >= 10 or s2 >= 10:
+                        run = False
+                        game_over = True
+                        if s1 > s2:
+                            winner = "Player 1"
+                        else:
+                            winner = "Player 2"
 
-                    if s2>=10 and s2>s1:
-                        winner="Player 2"
-                        print(winner+" wins.")
-                        winnertext=font.render(winner+" wins.",False,(0,0,0))
-                        screens.blit(winnertext,(100,40))
+                if not game_over: 
+                    scoretext = font.render(f"{s1} | {s2}", False, (0, 0, 0))
+                    screens.blit(scoretext, (150, 0))
 
-                    screens.blit(scoretext,(150,0))
+                else:  
+                    winnertext = font.render(f"{winner} wins!", False, (0, 0, 0))
+                    screens.blit(winnertext, (100, 40))
+
                     
 
 
@@ -369,7 +390,7 @@ while True:
             challenge()
             break
         if operation.lower() == "pong":
-            print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. Have fun!\n")
+            print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. First to 10 wins. Have fun!\n")
             game()
             break
         if operation.lower() == "challenge":
@@ -377,12 +398,12 @@ while True:
             break
             
         if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
-            print("SYNTAX ERROR: Operations may be wrong. Try again.")
+            print(opserror)
 
     except ZeroDivisionError:
-        print("MATH ERROR: No dividing by zero. Try again")
+        print(zerodiv)
         continue
             
     except OverflowError:
-        print("\nMATH ERROR: Number too large. Try again. \n")
+        print(matherror)
         continue 
