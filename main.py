@@ -17,7 +17,7 @@ while True:
     quitmessage = "\nInitialize quit...\nProgram exited.\n"
 
     try:
-        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, or quit to exit): ")
+        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, prime to see if the number is prime or composite, hypotenuse to find the hypotenuse (only for right angle triangles), or quit to exit): ")
         if num_input.lower() == "quit":
             print(quitmessage)
             break
@@ -72,6 +72,46 @@ while True:
                 print(syntaxerror)
                 continue
 
+        if num_input.lower() == "prime":
+            try:
+                prime_input = input("Type number in a whole number: ")
+                prime = int(prime_input)
+
+                if prime in [0, 1]:
+                    print(f"\n{prime} is not a prime number.\n")
+                else:
+                    for i in range(2, int(prime**0.5)+1):
+                        if prime%i == 0:
+                            print(f"\n{prime} is not a prime number.\n")
+                            break
+                    else:
+                        print(f"\n{prime} is a prime number.\n")
+            
+            except ValueError:
+                print("\nSYNTAX ERROR: Type in whole numbers. Try again.\n")
+            continue
+
+        if num_input.lower() == "gcf":
+            try:
+                greatest = int(input("Type first num: "))
+                greatest2 = int(input("Type second num: "))
+                print(f"\nThe GCF of {greatest} and {greatest2} is {math.gcd(greatest, greatest2)}\n")
+            
+            except ValueError:
+                print(syntaxerror)
+            continue
+
+        if num_input.lower() == "lcm":
+            try:
+                lowest = int(input("Type first num: "))
+                lowest2 = int(input("Type second num: "))
+                print(f"\nThe LCM of {lowest} and {lowest2} is {math.lcm(lowest, lowest2)}\n ")
+                continue
+
+            except ValueError:
+                print(syntaxerror)
+            continue
+
         
         if num_input.lower() == "random":
             try:
@@ -99,6 +139,36 @@ while True:
                 
             except ValueError:
                 print(syntaxerror)
+            continue
+
+        if num_input.lower() == "hypotenuse":
+            try:
+                a = float(input("Type length a: "))
+                b = float(input("Type length b: "))
+                c = a**2 + b**2
+                hyp = math.sqrt(c)
+                print(f"\nThe hypotenuse of length a, {a} and length b, {b} is {hyp}.\n")
+
+            except ValueError:
+                print(syntaxerror)
+            except OverflowError:
+                print(matherror)
+            continue
+
+        if num_input.lower() == "right angle":
+            try:
+                num1 = float(input("Type length a: "))
+                num2 = float(input("Type length b: "))
+                num3 = float(input("Type length of hypotenuse: "))
+                if (num1**2) + (num2**2) == (num3**2):
+                    print("\nIt is a right angle triangle.\n")
+                else:
+                    print("\nIt is not a right angle triangle.\n")
+            
+            except ValueError:
+                print(syntaxerror)
+            except OverflowError:
+                print(matherror)
             continue
 
         if num_input.lower() == "scientific":
@@ -256,7 +326,7 @@ while True:
 
                 if run:
                     scoretext=font.render(f"{s1} | {s2}",False,(0,0,0))
-                    screens.blit(scoretext,(150,0))
+                    screens.blit(scoretext,(160,0))
                     # move y
                     if ballup==True:
                         ball.y-=2
@@ -307,11 +377,13 @@ while True:
 
                 if not game_over: 
                     scoretext = font.render(f"{s1} | {s2}", False, (0, 0, 0))
-                    screens.blit(scoretext, (150, 0))
+                    screens.blit(scoretext, (160, 0))
 
                 else:  
+                    scoretext = font.render(f"{s1} | {s2}", False, (0, 0, 0))
+                    screens.blit(scoretext, (160, 0))
                     winnertext = font.render(f"{winner} wins!", False, (0, 0, 0))
-                    screens.blit(winnertext, (100, 40))
+                    screens.blit(winnertext, (110, 50))
 
                     
 
