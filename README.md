@@ -10,7 +10,11 @@
 
 ### Miscellaneous
 
-* Random number generatior
+* Random number generator
+
+* Magic-8 ball fortune teller
+
+* Rolling a die
 
 ### Helpful
 
@@ -21,6 +25,8 @@
 * Factorial
 
 * Square root
+
+* Right angle triangle checker/Pythagoras theorem
 
 * Scientific (base 10)
 

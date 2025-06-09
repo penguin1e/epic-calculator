@@ -1,5 +1,6 @@
 import math 
 import operator
+import time
 import pygame, sys, random
 from pygame.locals import QUIT
 from fractions import Fraction 
@@ -9,18 +10,54 @@ from fractions import Fraction
 # Feel free to add anything (minigames, more functions) as long as it is calculator related and in Python.
 
 while True:
-
     syntaxerror = "\nSYNTAX ERROR: Numbers may be wrong. Try again.\n"
     opserror = "\nSYNTAX ERROR: Operations may be wrong. Try again.\n"
     matherror = "\nMATH ERROR: Number too large. Try again.\n"
     zerodiv = "\nMATH ERROR: No dividing by zero. Try again.\n"
     quitmessage = "\nInitialize quit...\nProgram exited.\n"
 
+    # Loop to calculate
     try:
-        num_input = input("Type first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, prime to see if the number is prime or composite, hypotenuse to find the hypotenuse (only for right angle triangles), or quit to exit): ")
+        num_input = input("\nType first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, prime to see if the number is prime or composite, hypotenuse to find the hypotenuse (only for right angle triangles), magic ball to tell your fortune, dice to roll a die, or quit to exit): ")
+
+        # Quit loop
         if num_input.lower() == "quit":
             print(quitmessage)
             break
+
+        if num_input.lower() == "dark":
+            def glitched_text(text, chance = 0.1):
+                glitch_chars = ["$", "1", "4", "3", "6", "o_O", ":)", ":(", "☠︎︎", "X|"]
+                glitched = ''
+                for char in text:
+                    if random.random() < chance:
+                        glitched += random.choice(glitch_chars)
+                    else:
+                        glitched += char
+                return glitched
+
+            def delay_text(lines, delay = 1):
+                glitch_chance = 0.01
+                for line in lines:
+                    print(glitched_text(line, chance = glitch_chance))
+                    glitch_chance += 0.003
+                    time.sleep(delay)
+
+            warning = input("\nWARNING: You are about to proceed into uncharted and possibly dangerous territory. Would you like to continue?: ")
+            if warning.lower() == "yes":
+                print("\nWelcome to the Dark Side of the Calculator. Here, you can do powerful things nobody has ever done before. Now, you can do regular calculator functions in the next line.\n")
+                lin = ["Type in first numbe])(o)\n"]
+                lines = ["LAG: ERROR", "ERROR", "ERROR", "VIRUS DETECTED", "VIRUS DETECTED", "Type in seco numbVIRUS DETECTED", "VIRUS DETECTED", "VIRUS DETECTED", "VIRUS DETECTED", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "The lunatic is on the grass{]]}", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "There is no pain, you are receding...", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "Daddy, what else did you leave for me?", "VIRUS IS SPREADING", "Daddy, what'd you leave behind for me?", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "ONE OF THESE DAYS I'M GOING TO CUT YOU INTO LITTLE PIECES", "VIRUS HAS TAKEN OVER", "VIRUS HAS TAKEN OVER", "VIRUS HAS TAKEN OVER", "\nSession terminated.\n"]
+                delay_text(lin, delay = 1 )
+                delay_text(lines, delay = 0.4)
+                break
+            else:
+                print("\nAh, so you want to disrespect my wishes? You will now receive the ultimate punishment.")
+                break
+
+
+
+        # Exponent function
         if num_input.lower() == "exponent":
             try:
                 number = float(input("Type number: "))
@@ -34,6 +71,7 @@ while True:
                 print(syntaxerror)
             continue
         
+        # Factorial function
         if num_input.lower() == "!":
             try:
                 factorial = int(input("Type number: "))
@@ -46,7 +84,8 @@ while True:
             except ValueError:
                 print("\nSYNTAX ERROR: Use non-negative whole numbers. Try again.\n")
             continue
-
+        
+        # Fraction to decimal
         if num_input.lower() == "fraction":
             try:
                 fraction_input = input("Type fraction (i.e. 3/4): ")
@@ -59,6 +98,7 @@ while True:
                 print(syntaxerror)
             continue
         
+        # Decimal to fraction
         if num_input.lower() == "decimal":
             try:
                 decimal_input = input("Type decimal (i.e. 0.75): ")
@@ -71,7 +111,8 @@ while True:
             except ValueError:
                 print(syntaxerror)
                 continue
-
+        
+        # See if num is prime
         if num_input.lower() == "prime":
             try:
                 prime_input = input("Type number in a whole number: ")
@@ -90,7 +131,8 @@ while True:
             except ValueError:
                 print("\nSYNTAX ERROR: Type in whole numbers. Try again.\n")
             continue
-
+        
+        # Find greatest common factor
         if num_input.lower() == "gcf":
             try:
                 greatest = int(input("Type first num: "))
@@ -100,7 +142,8 @@ while True:
             except ValueError:
                 print(syntaxerror)
             continue
-
+        
+        # Find least common multiple
         if num_input.lower() == "lcm":
             try:
                 lowest = int(input("Type first num: "))
@@ -112,7 +155,7 @@ while True:
                 print(syntaxerror)
             continue
 
-        
+        # Random number generator
         if num_input.lower() == "random":
             try:
                 max_input = input("Type max number: ")
@@ -124,8 +167,27 @@ while True:
             
             except ValueError:
                 print(syntaxerror)
-            continue    
+            continue
 
+        if num_input.lower() == "dice":
+                result = random.randint(1, 6)
+                print(f"\nThe die landed on a {result}.")
+                continue
+        
+        if num_input.lower() == "magic ball":
+            question = input("Ask your question here: ")
+            
+            if question.lower() in ["will i die today?", "will i die today", "will i die tomorrow", "will i die tomorrow?"]:
+                print("\nyes 100% no cap\nSession terminated. Think about the choices you have made today.\n")
+                break
+            else:
+                result  = random.choice(["Yes", "No", "Maybe...", "Solve your own problems do I look like a magic 8 ball to you?", "I'm too lazy to answer ask again later or something", "Ask your pet fish I'm sleep deprived."])
+                print(f"\nDrum roll please...\nAND the magic-8 ball says...\n{result}\n")
+                continue
+            
+
+
+        # Square root
         if num_input == "square root":
             try:
                 x_input = input("Type number: ")
@@ -141,6 +203,7 @@ while True:
                 print(syntaxerror)
             continue
 
+        # Pythagoras theorem
         if num_input.lower() == "hypotenuse":
             try:
                 a = float(input("Type length a: "))
@@ -154,7 +217,8 @@ while True:
             except OverflowError:
                 print(matherror)
             continue
-
+        
+        # See if triangle is right angle
         if num_input.lower() == "right angle":
             try:
                 num1 = float(input("Type length a: "))
@@ -170,7 +234,8 @@ while True:
             except OverflowError:
                 print(matherror)
             continue
-
+        
+        # Scientific calculator
         if num_input.lower() == "scientific":
             operations = {"+": operator.add, 
                           "-": operator.sub,
@@ -186,6 +251,12 @@ while True:
             
             except ValueError:
                 print(syntaxerror)
+
+            except KeyError:
+                print(opserror)
+            
+            except ZeroDivisionError:
+                print(zerodiv)
 
             except OverflowError:
                 print(matherror)
@@ -205,22 +276,21 @@ while True:
         print(syntaxerror)
         continue
         
-    operation = input("Type operation: ")
-    print()
+
     try:
-        if operation == "+":
-            print(f"{num} + {nums} = {num + nums}\n")
-        elif operation == "-":
-            print(f"{num} - {nums} = {num - nums}\n")
-        elif operation == "*":
-            print(f"{num} x {nums} = {num * nums}\n")
-        elif operation == "/":
-            print(f"{num} / {nums} = {num / nums}\n")
-        
+        ops = {"+": operator.add,
+               "-": operator.sub,
+               "*": operator.mul,
+               "/": operator.truediv
+               }
+        operation = input("Type operation: ")
+        ans = ops[operation](num, nums)
+        print(f"\n{num} {operation} {nums} = {ans}")
     
 
+        # Challenge
         def capitals():
-            print("I see, you have found the portal. Now that you are here, you will play a game with me. You must say the same thing as me, or you lose. If you win and say the same thing as me for all the questions, you get $5.6 trillion in strontium-90.\n")
+            print("\nI see, you have found the portal. Now that you are here, you will play a game with me. You must say the same thing as me, or you lose. If you win and say the same thing as me for all the questions, you get $5.6 trillion in strontium-90.\n")
             
             while True:
                 question1 = input("Type a massively life-changing human invention: ")
@@ -254,7 +324,7 @@ while True:
                 
             
 
-
+        # Pong
         def game():
             pygame.init()
             clock = pygame.time.Clock()
@@ -384,21 +454,17 @@ while True:
                     screens.blit(scoretext, (160, 0))
                     winnertext = font.render(f"{winner} wins!", False, (0, 0, 0))
                     screens.blit(winnertext, (110, 50))
-
-                    
-
-
                 
                 pygame.display.update()
                 clock.tick(60) 
 
-                
+        # Geography challenge function       
         def challenge():
-            print("Hello, there. Welcome to the Land of Maybe. If you stumbled across here by accident, do not worry! Simply type 'no' into the next box. \n")
+            print("\nHello, there. Welcome to the Land of Maybe. If you stumbled across here by accident, do not worry! Simply type 'no' into the next box. \n")
             cool = input("Would you like to continue?: ")
             
             if cool.lower() == "no":
-                    print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n")
+                    print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\n")
                     return
             
             elif cool.lower() == "yes":
@@ -408,28 +474,28 @@ while True:
                 
                 if difficulty == "easy":
                     while True:
-                        q1 = input("Capital of USA: ")
+                        q1 = input("\nCapital of USA: ")
                         if q1.lower() in ["washington", "washington d.c.", "washington dc"]:
-                            print("Good job!")
+                            print("\nGood job!\n")
                             break
                         else:
-                            print("Sorry, that was wrong. Try again!")
+                            print("\nSorry, that was wrong. Try again!\n")
                             continue
                     while True:  
                         q2 = input("Capital of Mexico: ")
                         if q2.lower() == "mexico city":
-                            print("Good job!")
+                            print("\nGood job!\n")
                             break
                         else:
-                            print("Sorry, that was wrong. Try again!")
+                            print("\nSorry, that was wrong. Try again!\n")
                             continue
                     while True:   
                         q3 = input("Capital of Russia: ")
                         if q3.lower() == "moscow":
-                            print("Good job! You have won the geography challenge. You can now go home happily with $1 in your pocket.")
+                            print("\nGood job! You have won the geography challenge. You can now go home happily with $1 in your pocket.\n")
                             break
                         else:
-                            print("Sorry, that was wrong. Try again!")
+                            print("\nSorry, that was wrong. Try again!\n")
                             continue
 
                 if difficulty == "hard":
@@ -452,7 +518,7 @@ while True:
                             questionss = input("\nWhat was the last state to break away from the Soviet Union, and when did it officially collapse? (format: [country, MM, DD, YY]): \n")
                             
                             if questionss.lower() in ["kazakhstan, december 26, 1991", "kazakhstan, december 26th, 1991"]:
-                                print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\nSHOULD DEATH AWAIT YOU.\n- FREDDIE MERCURY\n")
+                                print("\nHa! You really thought it'd be that easy? Well, let me tell you something. IT'S NOT. Now you're stuck here forever. In 10 seconds I shall close these doors and lava will start flowing in, AND AFTER THAT, EVERYTHING IN THE ROOM WILL START BURNING! MWAHAHAHAHAHAHA! MWAHAHAHAHAHA!\n")
                                 return
                             else:
                                 print("\nSo you have chosen...death.\n")
@@ -462,7 +528,7 @@ while True:
             challenge()
             break
         if operation.lower() == "pong":
-            print("I see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. First to 10 wins. Have fun!\n")
+            print("\nI see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. First to 10 wins. Have fun!\n")
             game()
             break
         if operation.lower() == "challenge":
@@ -472,10 +538,12 @@ while True:
         if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
             print(opserror)
 
+    except KeyError:
+        print(opserror)
+
     except ZeroDivisionError:
         print(zerodiv)
-        continue
             
     except OverflowError:
         print(matherror)
-        continue 
+    continue 
