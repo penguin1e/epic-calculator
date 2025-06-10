@@ -21,7 +21,7 @@ while True:
         num_input = input("\nType first number, type functions to see all possible functions, or type quit to exit: ")
 
         if num_input.lower() == "functions":
-            print("\nType exponent to find exponent of a number\nType 'square root' to find the square root of a number\nType '!' to find factorial of a number\nType fraction for a fraction to decimal converter\nType decimal for a decimal to fraction converter\nType area to find the area of given shapes\nType GCF to find the GCF of a number\nType LCM to find the LCM of a number\nType 'prime' to see if a number is prime\nType 'percent' for percent to decimal\nType 'decim' for decimal to percent\nType 'hypotenuse' to find the hypotenuse for a right angle triangle\nType 'right angle' to see if the given lengths form a right angle triangle\nType 'scientific' to get a scientific (base 10) calculator.\n\nMiscellaneous:\nType 'random' for a randum number generator\nType 'dice' to roll a die\nType 'magic ball' to have your fortune told\n")
+            print("Helpful functions:\n\nType exponent to find exponent of a number\nType 'square root' to find the square root of a number\nType '!' to find factorial of a number\nType fraction for a fraction to decimal converter\nType decimal for a decimal to fraction converter\nType area to find the area of given shapes\nType GCF to find the GCF of a number\nType LCM to find the LCM of a number\nType 'prime' to see if a number is prime\nType 'percent' for percent to decimal\nType 'decim' for decimal to percent\nType 'hypotenuse' to find the hypotenuse for a right angle triangle\nType 'right angle' to see if the given lengths form a right angle triangle\nType 'scientific' to get a scientific (base 10) calculator.\n\nMiscellaneous:\nType 'random' for a randum number generator\nType 'dice' to roll a die\nType 'magic ball' to have your fortune told\n")
             continue
 
         # Quit loop
@@ -159,35 +159,7 @@ while True:
                 print(syntaxerror)
             continue
 
-        # Random number generator
-        if num_input.lower() == "random":
-            try:
-                max_input = input("Type max number: ")
-                max = int(max_input)
-                print(f"{random.randint(0, max)}\n")
-
-            except OverflowError:
-                print(matherror)
-            
-            except ValueError:
-                print(syntaxerror)
-            continue
-
-        if num_input.lower() == "dice":
-                result = random.randint(1, 6)
-                print(f"\nThe die landed on a {result}.")
-                continue
-        
-        if num_input.lower() == "magic ball":
-            question = input("Ask your question here: ")
-            
-            if question.lower() in ["will i die today?", "will i die today", "will i die tomorrow", "will i die tomorrow?"]:
-                print("\nyes 100% no cap\nSession terminated. Think about the choices you have made today.\n")
-                break
-            else:
-                result  = random.choice(["Yes", "No", "Maybe...", "Solve your own problems do I look like a magic 8 ball to you?", "I'm too lazy to answer ask again later or something", "Ask your pet fish I'm sleep deprived."])
-                print(f"\nDrum roll please...\nAND the magic-8 ball says...\n{result}\n")
-                continue
+       
 
         if num_input.lower() == "percent":
             try:
@@ -316,6 +288,36 @@ while True:
             except OverflowError:
                 print(matherror)
             continue
+
+         # Random number generator
+        if num_input.lower() == "random":
+            try:
+                max_input = input("Type max number: ")
+                max = int(max_input)
+                print(f"{random.randint(0, max)}\n")
+
+            except OverflowError:
+                print(matherror)
+            
+            except ValueError:
+                print(syntaxerror)
+            continue
+
+        if num_input.lower() == "dice":
+                result = random.randint(1, 6)
+                print(f"\nThe die landed on a {result}.")
+                continue
+        
+        if num_input.lower() == "magic ball":
+            question = input("\nAsk your question here: ")
+            
+            if question.lower() in ["will i die today?", "will i die today", "will i die tomorrow", "will i die tomorrow?"]:
+                print("\nyes 100% no cap\nSession terminated. Think about the choices you have made today.\n")
+                break
+            else:
+                result  = random.choice(["Yes", "No", "Maybe...", "Solve your own problems do I look like a magic 8 ball to you?", "I'm too lazy to answer ask me again sometime later", "Ask your pet fish I'm sleep deprived."])
+                print(f"\nDrum roll please...\nAND the magic-8 ball says...\n{result}\n")
+                continue
 
 
         
