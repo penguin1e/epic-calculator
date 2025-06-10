@@ -34,3 +34,13 @@
 
 * Scientific (base 10)
 
+## Minigames
+
+* Geography challenge
+
+* Type the same thing as me
+
+* Pong
+
+* Snake game (in progress)
+

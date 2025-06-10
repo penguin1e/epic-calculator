@@ -3,6 +3,7 @@ import operator
 import time
 import pygame, sys, random
 from pygame.locals import QUIT
+from collections import deque
 from fractions import Fraction 
 
 # OPEN TERMINAL TO TYPE STUFF IT IS NOT DISPLAYED IN THE PYTHON WINDOW
@@ -21,7 +22,7 @@ while True:
         num_input = input("\nType first number, type functions to see all possible functions, or type quit to exit: ")
 
         if num_input.lower() == "functions":
-            print("Helpful functions:\n\nType exponent to find exponent of a number\nType 'square root' to find the square root of a number\nType '!' to find factorial of a number\nType fraction for a fraction to decimal converter\nType decimal for a decimal to fraction converter\nType area to find the area of given shapes\nType GCF to find the GCF of a number\nType LCM to find the LCM of a number\nType 'prime' to see if a number is prime\nType 'percent' for percent to decimal\nType 'decim' for decimal to percent\nType 'hypotenuse' to find the hypotenuse for a right angle triangle\nType 'right angle' to see if the given lengths form a right angle triangle\nType 'scientific' to get a scientific (base 10) calculator.\n\nMiscellaneous:\nType 'random' for a randum number generator\nType 'dice' to roll a die\nType 'magic ball' to have your fortune told\n")
+            print("\nHelpful functions:\nType exponent to find exponent of a number\nType 'square root' to find the square root of a number\nType '!' to find factorial of a number\nType fraction for a fraction to decimal converter\nType decimal for a decimal to fraction converter\nType area to find the area of given shapes\nType GCF to find the GCF of a number\nType LCM to find the LCM of a number\nType 'prime' to see if a number is prime\nType 'percent' for percent to decimal\nType 'decim' for decimal to percent\nType 'hypotenuse' to find the hypotenuse for a right angle triangle\nType 'right angle' to see if the given lengths form a right angle triangle\nType 'scientific' to get a scientific (base 10) calculator.\nType 'sci convert' to convert a number in scientific notation to standard form\n\nMiscellaneous:\nType 'random' for a randum number generator\nType 'dice' to roll a die\nType 'magic ball' to have your fortune told\n")
             continue
 
         # Quit loop
@@ -289,6 +290,18 @@ while True:
                 print(matherror)
             continue
 
+        if num_input.lower() == "sci convert":
+            try:
+                sci_num = input("Type in number in scientific form (i.e. 3.5e+06): ")
+                sci = float(sci_num)
+                print(f"\n{sci_num} in standard form is {sci}.\n")
+            
+            except ValueError:
+                print(syntaxerror)
+            except OverflowError:
+                print(matherror)
+            continue
+
          # Random number generator
         if num_input.lower() == "random":
             try:
@@ -333,16 +346,17 @@ while True:
         print(syntaxerror)
         continue
         
-
+    operation = input("Type operation: ")
     try:
-        ops = {"+": operator.add,
-               "-": operator.sub,
-               "*": operator.mul,
-               "/": operator.truediv
-               }
-        operation = input("Type operation: ")
-        ans = ops[operation](num, nums)
-        print(f"\n{num} {operation} {nums} = {ans}")
+        if operation.lower() == "+":
+            print(f"\n{num} + {nums} = {num+nums}")
+        elif operation.lower() == "-":
+            print(f"\n{num} - {nums} = {num-nums}")
+        elif operation.lower() == "*":
+            print(f"\n{num} x {nums} = {num*nums}")
+        elif operation.lower() == "/":
+            print(f"\n{num} / {nums} = {num/nums}")
+        
     
 
         # Challenge
@@ -378,8 +392,143 @@ while True:
                     print("\nYou have made a massive mistake. In 10 seconds, I shall close these doors and heat it up until 500 duodecillion degrees celcius, burning everything inside. MWAHAHAHAHAHA!!!! MWAHAHAHAHAHAHH!!!!!!\n")
                     return
                 
+      
+      '''   
+      Need to work on this
+      
+        def snake_game():
+            pygame.init()
+            SIZE = (500, 400)
+            screen = pygame.display.set_mode(SIZE)
+            clock = pygame.time.Clock()
+            running = True
+            direction = ""
+
+            class Snake(pygame.sprite.Sprite):
+                def __init__(self, x, y, ishead=False, length=20):
+                    super().__init__()
+                    self.length = length
+                    self.image = pygame.Surface([self.length, self.length])
+                    self.image.fill("blue4")
+                    self.rect = self.image.get_rect(topleft=(x, y))
+                    self.ishead = ishead
+
+                def update(self):
+                    global direction
+                    
+                    if self.ishead:
+                        if direction == "up":
+                            self.rect.y -= self.length
+                        elif direction == "down":
+                            self.rect.y += self.length
+                        elif direction == "left":
+                            self.rect.x -= self.length
+                        elif direction == "right":
+                            self.rect.x += self.length
+                        
+
+            class Apple(pygame.sprite.Sprite):
+                def __init__(self, x, y, length = 20):
+                    super().__init__()
+                    self.length = length
+                    
+                    # The reason the apple looked like square is because the background of rect was not transparent.
+                    self.image = pygame.Surface([self.length, self.length], pygame.SRCALPHA)
+                    self.image.fill((0, 0, 0, 0))
+                    self.rect = pygame.draw.circle(self.image, "red", (self.length//2, self.length//2), self.length//2)
+
+                    self.rect = self.image.get_rect(topleft=(x, y))
+
+                def teleport(self):
+                    self.rect.x = random.randint(0, 500)//20*20
+                    self.rect.y = random.randint(0, 400)//20*20
+
+
+
+            snakegroup = pygame.sprite.Group()
+            head = Snake(SIZE[0]//2//20*20, SIZE[1]//2//20*20, True)
+            snakegroup.add(head)
+            snakeposition = []
+            snakeposition.append((head.rect.x, head.rect.y))
+
+            applegroup = pygame.sprite.GroupSingle()
+
+            apple = Apple(random.randint(0, 500)//20*20, random.randint(0, 400)//20*20)
+            applegroup.add(apple)
+
+            score_font = pygame.font.Font(None, 30)
+            score_text = score_font.render(f"Score: {len(snakeposition)}", True, (0, 0, 0))
+
+            def game_over_screen():
+                global score_text
+                screen.fill("white")
+                font=pygame.font.Font(None, 50)
+                game_over_text = font.render("Game Over", True, (0, 0, 0))
+                text_rect = game_over_text.get_rect(center=(250,200))
+                scoretext_rect = score_text.get_rect(center = (250, 250))
+                # highest_level_text = font.render(f"You reached level {level}", True, (255, 0, 0))
+                # text = highest_level_text.get_rect(center=(250,300))
+                screen.blit(game_over_text, text_rect)
+                screen.blit(score_text, scoretext_rect)
+                # screen.blit(highest_level_text, text)
+                pygame.display.update()
+                pygame.time.wait(3000)
+                pygame.quit()
+                exit()
+
+            while running:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+                        pygame.quit()
+
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_UP] and direction != "down":
+                    direction = "up"
+                elif keys[pygame.K_DOWN] and direction != "up":
+                    direction = "down"
+                elif keys[pygame.K_LEFT] and direction != "right":
+                    direction = "left"
+                elif keys[pygame.K_RIGHT] and direction != "left":
+                    direction = "right"
+
+                snakegroup.update()
+
+                snakeposition.append((head.rect.x, head.rect.y))
+
+                while len(snakeposition) > len(snakegroup.sprites()):
+                    snakeposition.pop(0)
+
+                for position, snakeblock in zip(snakeposition[::-1], snakegroup.sprites()):
+                    snakeblock.rect.x = position[0]
+                    snakeblock.rect.y = position[1]
+
                 
-            
+                if (head.rect.x, head.rect.y) in snakeposition[:-1]:
+                    game_over_screen()
+                
+                if head.rect.x > SIZE[0] or head.rect.y > SIZE[1] or head.rect.x < 0 or head.rect.y < 0:
+                    game_over_screen()
+
+                if head.rect.x == apple.rect.x and head.rect.y == apple.rect.y:
+                    apple.teleport()
+                    body = Snake(snakeposition[0][0], snakeposition[0][1], length = 20)
+                    snakegroup.add(body)
+
+                score_text = score_font.render(f"Score: {len(snakeposition)}", True, (0, 0, 0))
+                score_text_rect = score_text.get_rect(center=(SIZE[0] - 100, SIZE[1] // 7))
+                
+                screen.fill("white")
+                
+                snakegroup.draw(screen)
+                applegroup.draw(screen)
+                screen.blit(score_text, score_text_rect)
+                pygame.display.flip()
+                clock.tick(10) 
+    '''
+
+    
+
 
         # Pong
         def game():
@@ -584,18 +733,22 @@ while True:
         if operation.lower() == "magic":
             challenge()
             break
-        if operation.lower() == "pong":
+        elif operation.lower() == "pong":
             print("\nI see you have found the game. To play it, simply go to your taskbar and click on the window that has the Python logo on it. Press space to start the game. First to 10 wins. Have fun!\n")
             game()
             break
-        if operation.lower() == "challenge":
+        elif operation.lower() == "challenge":
             capitals()
             break
+        elif operation.lower() == "snake":
+            print("\nI see you have found the game. To play, simply go to your taskbar and click on the app with the Python logo on it. Have fun!\n")
+            snake_game()
+            break
             
-        if operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge"]:
+        elif operation.lower() not in ["+", "-", "*", "/", "magic", "pong", "challenge", "snake"]:
             print(opserror)
 
-    except KeyError:
+    except ValueError:
         print(opserror)
 
     except ZeroDivisionError:
