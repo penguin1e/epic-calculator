@@ -18,7 +18,11 @@ while True:
 
     # Loop to calculate
     try:
-        num_input = input("\nType first number (type exponent for exponents, ! for factorial, square root for square root, random for a random number generator, fraction for fraction to decimal converter, decimal for decimal to fraction converter, scientific for a scientific calculator, prime to see if the number is prime or composite, hypotenuse to find the hypotenuse (only for right angle triangles), magic ball to tell your fortune, dice to roll a die, or quit to exit): ")
+        num_input = input("\nType first number, type functions to see all possible functions, or type quit to exit: ")
+
+        if num_input.lower() == "functions":
+            print("\nType exponent to find exponent of a number\nType 'square root' to find the square root of a number\nType '!' to find factorial of a number\nType fraction for a fraction to decimal converter\nType decimal for a decimal to fraction converter\nType area to find the area of given shapes\nType GCF to find the GCF of a number\nType LCM to find the LCM of a number\nType 'prime' to see if a number is prime\nType 'percent' for percent to decimal\nType 'decim' for decimal to percent\nType 'hypotenuse' to find the hypotenuse for a right angle triangle\nType 'right angle' to see if the given lengths form a right angle triangle\nType 'scientific' to get a scientific (base 10) calculator.\n\nMiscellaneous:\nType 'random' for a randum number generator\nType 'dice' to roll a die\nType 'magic ball' to have your fortune told\n")
+            continue
 
         # Quit loop
         if num_input.lower() == "quit":
@@ -184,7 +188,26 @@ while True:
                 result  = random.choice(["Yes", "No", "Maybe...", "Solve your own problems do I look like a magic 8 ball to you?", "I'm too lazy to answer ask again later or something", "Ask your pet fish I'm sleep deprived."])
                 print(f"\nDrum roll please...\nAND the magic-8 ball says...\n{result}\n")
                 continue
+
+        if num_input.lower() == "percent":
+            try:
+                number = float(input("Type decimal: "))
+                res = number * 100
+                print(f"\n{number} as a percent is {res}%.\n")
             
+            except ValueError:
+                print(syntaxerror)
+            continue
+
+        if num_input.lower() == "decim":
+            try:
+                percent = float(input("Type percent (i.e.: 70, 80, 50, do not put a percent sign after): "))
+                answer = percent/100
+                print(f"\n{percent} as a decimal is {answer}.\n")
+            
+            except ValueError:
+                print(syntaxerror)
+            continue
 
 
         # Square root
@@ -234,7 +257,39 @@ while True:
             except OverflowError:
                 print(matherror)
             continue
-        
+
+        if num_input.lower() == "area":
+            try:
+                shape = input("Type shape (three options: triangle, rectangle/square, trapezoid, circle): ")
+                if shape.lower() in ["rectangle", "square"]:
+                    length = float(input("Type length: "))
+                    wid = float(input("Type width: "))
+                    area = len*wid
+                    print(f"\nThe area of a {shape} with a length and width of {len} and {wid} is {area}.\n")
+                elif shape.lower() == "trapezoid":
+                    length1 = float(input("Type length: "))
+                    length2 = float(input("Type second length: "))
+                    height = float(input("Type height: "))
+                    ans = ((length1 + length2) / 2)*height
+                    print(f"\nThe area of a trapezoid with a length of {length1}, a second length of {length2}, and a height of {height} is {ans}.\n")
+                elif shape.lower() == "triangle":
+                    b = float(input("Type base length: "))
+                    h = float(input("Type height: "))
+                    a = 0.5*(b*h)
+                    print(f"\nThe area of a triangle with base and height of {b} and {h} is {a}.\n")
+                elif shape.lower() == "circle":
+                    r = float(input("Type radius: "))
+                    ar = math.pi*(r**2)
+                    print(f"\nThe area of a circle with a radius of {r} is {ar}.\n")
+                else:
+                    print("\nSYNTAX ERROR: Type in a name from the shapes provided. Try again.\n")
+            
+            except ValueError:
+                print(syntaxerror)
+            except OverflowError:
+                print(matherror)
+            continue
+
         # Scientific calculator
         if num_input.lower() == "scientific":
             operations = {"+": operator.add, 

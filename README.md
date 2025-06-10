@@ -1,5 +1,7 @@
 # Epic Calculator
 
+## Overview
+
 * Fully functioning Python calculator.
 
 * Has many helpful functions that can be used if typed correctly
@@ -27,6 +29,8 @@
 * Square root
 
 * Right angle triangle checker/Pythagoras theorem
+
+* Area calculations (rectangles/squares, trapezoid, triangle, circle)
 
 * Scientific (base 10)
 
