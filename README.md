@@ -38,7 +38,7 @@
 
 * Geography challenge
 
-* Type the same thing as me
+* Say the same thing as me
 
 * Pong
 

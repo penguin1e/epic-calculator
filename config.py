@@ -1,0 +1,5 @@
+syntaxerror = "\nSYNTAX ERROR: Numbers may be wrong. Try again."
+opserror = "\nSYNTAX ERROR: Operations may be wrong. Try again."
+matherror = "\nMATH ERROR: Number too large. Try again."
+zerodiv = "\nMATH ERROR: No dividing by zero. Try again."
+quitmessage = "\nInitialize quit...\nProgram exited.\n"
