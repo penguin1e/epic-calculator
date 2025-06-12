@@ -42,5 +42,5 @@
 
 * Pong
 
-* Snake game (in progress)
+* Snake game
 

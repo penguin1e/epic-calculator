@@ -8,42 +8,9 @@ from collections import deque
 from fractions import Fraction 
 
 def functions():
-    print("\nHelpful functions:\nType 'exponent' to find the exponent of a number\nType 'factorial' to find the factorial of a number\nType 'frac decim' to convert a fraction to decimal or vice versa\nType 'prime' to see if a number is prime or composite\nType 'gcf lcm' to find the GCF or LCM of a number\nType 'percent decimal' to convert a decimal to percent or vice versa\nType 'square root' to find the square root of a number\nType 'hypotenuse' to find the hypotenuse of a right angle triangle\nType 'right angle' to see if the given lengths form a right triangle\nType 'area' to find the area of a shape (rectangle, square, trapezoid, triangle, circle)\nType 'scientific' for a scientific (base 10) calculator\nType 'sci convert' to convert a standardn number to scientific or vice versa\n\nMiscellaneous:\nType 'random number' to get a random number generatior\nType 'roll a die' to roll a die\nType 'magic ball' to have your fortune told\n")
+    print("\nHelpful functions:\nType 'exponent' to find the exponent of a number\nType 'factorial' to find the factorial of a number\nType 'frac decim' to convert a fraction to decimal or vice versa\nType 'prime' to see if a number is prime or composite\nType 'gcf lcm' to find the GCF or LCM of a number\nType 'percent decimal' to convert a decimal to percent or vice versa\nType 'square root' to find the square root of a number\nType 'hypotenuse' to find the hypotenuse of a right angle triangle\nType 'right angle' to see if the given lengths form a right triangle\nType 'area' to find the area of a shape (rectangle, square, trapezoid, triangle, circle)\nType 'scientific' for a scientific (base 10) calculator\nType 'sci convert' to convert a standardn number to scientific or vice versa\nType 'convert units' to convert between units\n\nMiscellaneous:\nType 'random number' to get a random number generatior\nType 'roll a die' to roll a die\nType 'magic ball' to have your fortune told\n")
 
-def darkside(num_input):   
-    def glitched_text(text, chance = 0.1):
-        glitch_chars = ["$", "1", "4", "3", "6", "o_O", ":)", ":(", "☠︎︎", "X|"]
-        glitched = ''
-        for char in text:
-            if random.random() < chance:
-                glitched += random.choice(glitch_chars)
-            else:
-                glitched += char
-        return glitched
-
-    def delay_text(lines, delay = 1):
-        glitch_chance = 0.01
-        for line in lines:
-            print(glitched_text(line, chance = glitch_chance))
-            glitch_chance += 0.003
-            time.sleep(delay)
-
-    warning = input("\nWARNING: You are about to proceed into uncharted and possibly dangerous territory. Would you like to continue?: ")
-    if warning.lower() == "yes":
-        print("\nWelcome to the Dark Side of the Calculator. Here, you can do powerful things nobody has ever done before. Now, you can do regular calculator functions in the next line.\n")
-        lin = ["Type in first numbe])(o)\n"]
-        lines = ["LAG: ERROR", "ERROR", "ERROR", "VIRUS DETECTED", "VIRUS DETECTED", "Type in seco numbVIRUS DETECTED", "VIRUS DETECTED", "VIRUS DETECTED", "VIRUS DETECTED", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "The lunatic is on the grass{]]}", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "There is no pain, you are receding...", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "Daddy, what else did you leave for me?", "VIRUS IS SPREADING", "Daddy, what'd you leave behind for me?", "VIRUS IS SPREADING", "VIRUS IS SPREADING", "ONE OF THESE DAYS I'M GOING TO CUT YOU INTO LITTLE PIECES", "VIRUS HAS TAKEN OVER", "VIRUS HAS TAKEN OVER", "VIRUS HAS TAKEN OVER", "\nSession terminated.\n"]
-        delay_text(lin, delay = 1 )
-        delay_text(lines, delay = 0.4)
-        return
-    else:
-        print("\nAh, so you want to disrespect my wishes? You will now receive the ultimate punishment.")
-        return
-
-
-
-    # Exponent function
-def exponent(num_input):
+def exponent():
     try:
         number = float(input("Type number: "))
         power = float(input("Type power (ex. 2, 3): "))
@@ -226,10 +193,10 @@ def scicalc():
         print(f"\n{result:.2e}")
         
     except ValueError:
-        print(config.config.syntaxerror)
+        print(config.syntaxerror)
 
     except KeyError:
-        print(config.opserror)
+        print(config.syntaxerror)
     
     except ZeroDivisionError:
         print(config.zerodiv)
@@ -254,7 +221,29 @@ def sci_convert():
         print(config.config.syntaxerror)
     except OverflowError:
         print(config.matherror)
-    
+
+def unit_convert():
+    conversions = {
+        "celsius to fahrenheit": lambda c: c * 1.8 + 32,
+        "fahrenheit to celsius": lambda f: (f - 32) * 5 / 9,
+        "feet to miles": lambda ft: ft / 5280,
+        "miles to feet": lambda mi: mi * 5280,
+        "meters to kilometers": lambda m: m / 1000,
+        "kilometers to meters": lambda km: km * 1000,
+        "miles to kilometers": lambda miles: miles*1.609,
+        "kilometers to miles": lambda kilometers: kilometers/1.609,
+        "liters to gallons": lambda l: l / 3.785,
+        "gallons to liters": lambda g: g * 3.785,
+    }
+
+    units = input("Type units you want to convert (e.g. 'celsius to fahrenheit'): ").lower().strip()
+    if units in conversions:
+        value = float(input(f"Type the value you want to convert from {units.split(' to ')[0]}: "))
+        result = conversions[units](value)
+        print(f"\n{value} {units.split(' to ')[0]} is {result} {units.split(' to ')[1]}.\n")
+    else:
+        print("\nSYNTAX ERROR: Conversion not found. Try again.")
+
 
 def numgen():
     try:

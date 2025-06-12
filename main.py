@@ -1,8 +1,8 @@
 import math 
 import operator
 import time
-from function import functions, exponent, factorial, frac_decim, prime_composite, factor, percent_decimal, square_root, hypotenuse, rightangle, area, scicalc, sci_convert, numgen, rolldice, fortune
-from games import capitals, game, challenge
+from function import functions, exponent, factorial, frac_decim, prime_composite, factor, percent_decimal, square_root, hypotenuse, rightangle, area, scicalc, sci_convert, unit_convert, numgen, rolldice, fortune
+from games import capitals, game, challenge, snake_game
 import config
 import pygame, sys, random
 from pygame.locals import QUIT
@@ -26,10 +26,11 @@ commands = {"exponent": exponent,
             "area": area,
             "scientific": scicalc,
             "sci convert": sci_convert,
+            "convert units": unit_convert,
             "roll a die": rolldice,
             "random num": numgen,
             "magic ball": fortune
-                }
+            }
         
 
 while True:
@@ -74,8 +75,7 @@ while True:
             print(f"\n{num} x {nums} = {num*nums}")
         elif operation == "/":
             print(f"\n{num} / {nums} = {num/nums}")
-    
-        if operation == "magic":
+        elif operation == "magic":
             challenge()
             break
         elif operation == "pong":
@@ -86,13 +86,14 @@ while True:
             capitals()
             break
         elif operation == "snake":
-            pass
+            snake_game()
+            break
       
         if operation not in ["+", "-", "*", "/", "magic", "pong", "challenge", "snake"]:
-            print(config.opserror)
+            print(config.syntaxerror)
 
     except ValueError:
-        print(config.opserror)
+        print(config.syntaxerror)
 
     except ZeroDivisionError:
         print(config.zerodiv)
