@@ -4,7 +4,7 @@ from pygame.locals import QUIT
 import sys
 
 
-def capitals():
+def samething():
     print("\nI see, you have found the portal. Now that you are here, you will play a game with me. You must say the same thing as me, or you lose. If you win and say the same thing as me for all the questions, you get $5.6 trillion in strontium-90.\n")
     
     while True:
@@ -16,7 +16,7 @@ def capitals():
             return
         
         question2 = input("Type a random existent object in the universe: ")
-        if question2.lower() in ["ton-618", "ton 618"]:
+        if question2.lower().strip() in ["ton-618", "ton 618"]:
             print("\nGood job! Now, on to the next question.\n")
         else:
             print("\nHow dare you not say the same thing as me?? YOU SHALL REGRET TODAY'S ACTIONS!!\n")

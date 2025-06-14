@@ -1,17 +1,11 @@
-import math 
-import operator
-import time
-from function import functions, exponent, factorial, frac_decim, prime_composite, factor, percent_decimal, square_root, hypotenuse, rightangle, area, scicalc, sci_convert, unit_convert, numgen, rolldice, fortune
-from games import capitals, game, challenge, snake_game
+from function import functions, exponent, factorial, frac_decim, prime_composite, factor, percent_decimal, square_root, hypotenuse, rightangle, area, scicalc, sci_convert, unit_convert, numgen, rolldice, fortune, coinflip
+from games import samething, game, challenge, snake_game
 import config
-import pygame, sys, random
 from pygame.locals import QUIT
 from collections import deque
 from fractions import Fraction 
 
 # OPEN TERMINAL TO TYPE STUFF IT IS NOT DISPLAYED IN THE PYTHON WINDOW
-
-# Feel free to add anything (minigames, more functions) as long as it is calculator related and in Python.
 
 commands = {"exponent": exponent,
             "functions": functions,
@@ -27,15 +21,16 @@ commands = {"exponent": exponent,
             "scientific": scicalc,
             "sci convert": sci_convert,
             "convert units": unit_convert,
-            "roll a die": rolldice,
+            "roll dice": rolldice,
             "random num": numgen,
-            "magic ball": fortune
+            "magic ball": fortune,
+            "flip a coin": coinflip
             }
         
 
 while True:
     try:
-        num_input = input("\nType first number, type functions to see all possible functions, or type quit to exit: ").lower().strip()
+        num_input = input("\nType first number, type 'functions' to see all possible functions, or type 'quit' to exit: ").lower().strip()
      
         if num_input.lower() == "quit":
             print(config.quitmessage)
@@ -48,10 +43,9 @@ while True:
              func = commands.get(num_input)
              if func:
                 func()
-                continue
              else:
                 print(config.syntaxerror)
-                continue
+             continue
         
         nums_input = input("Type second number or type quit to exit: ")
 
@@ -63,6 +57,7 @@ while True:
         
     except ValueError:
         print(config.syntaxerror)
+        continue
        
         
     operation = input("Type operation: ").lower().strip()
@@ -83,7 +78,7 @@ while True:
             game()
             break
         elif operation == "challenge":
-            capitals()
+            samething()
             break
         elif operation == "snake":
             snake_game()

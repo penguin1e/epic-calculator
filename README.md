@@ -16,7 +16,7 @@
 
 * Magic-8 ball fortune teller
 
-* Rolling a die
+* Rolling dice (maximum is 3 dice)
 
 ### Helpful
 
@@ -26,11 +26,13 @@
 
 * Factorial
 
-* Square root
+* Square roots
 
 * Right angle triangle checker/Pythagoras theorem
 
 * Area calculations (rectangles/squares, trapezoid, triangle, circle)
+
+* Unit conversions
 
 * Scientific (base 10)
 

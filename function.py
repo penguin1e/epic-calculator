@@ -5,11 +5,14 @@ import random
 import config
 from pygame.locals import QUIT
 from collections import deque
-from fractions import Fraction 
+from fractions import Fraction
 
+
+# Lists out all possible functions
 def functions():
-    print("\nHelpful functions:\nType 'exponent' to find the exponent of a number\nType 'factorial' to find the factorial of a number\nType 'frac decim' to convert a fraction to decimal or vice versa\nType 'prime' to see if a number is prime or composite\nType 'gcf lcm' to find the GCF or LCM of a number\nType 'percent decimal' to convert a decimal to percent or vice versa\nType 'square root' to find the square root of a number\nType 'hypotenuse' to find the hypotenuse of a right angle triangle\nType 'right angle' to see if the given lengths form a right triangle\nType 'area' to find the area of a shape (rectangle, square, trapezoid, triangle, circle)\nType 'scientific' for a scientific (base 10) calculator\nType 'sci convert' to convert a standardn number to scientific or vice versa\nType 'convert units' to convert between units\n\nMiscellaneous:\nType 'random number' to get a random number generatior\nType 'roll a die' to roll a die\nType 'magic ball' to have your fortune told\n")
+    print("\nHelpful functions:\nType 'exponent' to find the exponent of a number\nType 'factorial' to find the factorial of a number\nType 'frac decim' to convert a fraction to decimal or vice versa\nType 'prime' to see if a number is prime or composite\nType 'gcf lcm' to find the GCF or LCM of a number\nType 'percent decimal' to convert a decimal to percent or vice versa\nType 'square root' to find the square root of a number\nType 'hypotenuse' to find the hypotenuse of a right angle triangle\nType 'right angle' to see if the given lengths form a right triangle\nType 'area' to find the area of a shape (rectangle, square, trapezoid, triangle, circle)\nType 'scientific' for a scientific (base 10) calculator\nType 'sci convert' to convert a standardn number to scientific or vice versa\nType 'convert units' to convert between units\n\nMiscellaneous:\nType 'random number' to get a random number generatior\nType 'roll a die' to roll a die\nType 'flip a coin' to flip a coin\nType 'magic ball' to have your fortune told\n")
 
+# Exponent calculations
 def exponent():
     try:
         number = float(input("Type number: "))
@@ -22,7 +25,7 @@ def exponent():
     except ValueError:
         print(config.syntaxerror)
 
-    # Factorial function
+# Factorial function
 def factorial():
     try:
         factorial = int(input("Type number: "))
@@ -36,7 +39,7 @@ def factorial():
         print(config.syntaxerror)
     
 
-    # Fraction to decimal
+# Fraction to decimal
 def frac_decim():
     try:
         conver = input("Fraction to decimal or decimal to fraction (type frac to decim or decim to frac): ")
@@ -53,7 +56,7 @@ def frac_decim():
         print(config.syntaxerror)
 
            
-
+# See if a number is prime or composite
 def prime_composite():
     try:
         prime_input = input("Type number in a whole number: ")
@@ -71,7 +74,8 @@ def prime_composite():
     
     except ValueError:
         print(config.syntaxerror)
-    
+
+# Find the GCF or LCM of two numbers
 def factor():
     which = input("GCF or LCM (Type GCF or LCM): ")
     try:
@@ -88,8 +92,7 @@ def factor():
         print(config.syntaxerror)
 
         
-
-
+# Convert decimal to percent and vice versa
 def percent_decimal():
     per = input("Percent to decimal or decimal to percent (type per to dec or dec to per): ")
     try:
@@ -106,6 +109,7 @@ def percent_decimal():
         print(config.syntaxerror)
         
 
+# Find square root of a number
 def square_root():
     try:
         x_input = input("Type number: ")
@@ -120,6 +124,7 @@ def square_root():
         print(config.syntaxerror)
         
 
+# Find hypotenuse of a triangle given the lengths
 def hypotenuse():
     try:
         a = float(input("Type length a: "))
@@ -132,7 +137,9 @@ def hypotenuse():
         print(config.syntaxerror)
     except OverflowError:
         print(config.matherror)
-        
+
+
+# See if a triangle with the given lengths is a right triangle
 def rightangle():
     try:
         num1 = float(input("Type length a: "))
@@ -147,7 +154,9 @@ def rightangle():
         print(config.syntaxerror)
     except OverflowError:
         print(config.matherror)
-    
+
+
+# 
 def area():
     try:
         shape = input("Type shape (three options: triangle, rectangle/square, trapezoid, circle): ")
@@ -259,8 +268,26 @@ def numgen():
         
 
 def rolldice():
-    result = random.randint(1, 6)
-    print(f"\nThe die landed on a {result}.")
+    amount = int(input("\nHow many dice would you like to roll (3 is maximum)?: "))
+    if amount == 1:
+        result = random.randint(1,6)
+        print(f"\nThe die landed on a {result}.\n")
+    elif amount == 2:
+        outcome1 = random.randint(1,6)
+        outcome2 = random.randint(1,6)
+        print(f"\nThe dice landed on a {outcome1} and {outcome2} for a total sum of {outcome1+outcome2}.")
+    elif amount == 3:
+        result1 = random.randint(1,6)
+        result2 = random.randint(1,6)
+        result3 = random.randint(1,6)
+        print(f"\nThe dice landed on a {result1}, {result2}, {result3} for a total sum of {result1+result2+result3}.")
+    else:
+        print("\nSYNTAX ERROR: Type valid numbers.")    
+    
+
+def coinflip():
+    result = random.choice(["Heads", "Tails"])
+    print(f"\nThe coin landed on {result}.\n")
 
 def fortune():
     question = input("\nAsk your question here: ")
